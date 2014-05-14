@@ -3,8 +3,8 @@
 // before all nested files are concatenated by Grunt
 
 // Config
-angular.module('csv.config', [])
-  .value('csv.config', { debug: true })
+angular.module('angularCsv.config', [])
+  .value('angularCsv.config', { debug: true })
   .config(['$compileProvider', function($compileProvider) {
     if (angular.isDefined($compileProvider.urlSanitizationWhitelist)) {
       $compileProvider.urlSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|data):/);
@@ -14,4 +14,4 @@ angular.module('csv.config', [])
   }]);
 
 // Modules
-var csv = angular.module('csv', ['csv.config', 'ngSanitize']);
+var angularCsv = angular.module('angularCsv', ['angularCsv.config', 'ngSanitize']);

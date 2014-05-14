@@ -1,4 +1,4 @@
-csv.factory('save', function($document) {'use strict';
+angularCsv.factory('angularCsvHelper', function($document) {'use strict';
   var fns = {
     makeDefaults: function(options) {
       options.separator = options.separator || ',';
@@ -38,7 +38,7 @@ csv.factory('save', function($document) {'use strict';
     makeAnchor: function(dataStr, options) {
       options = fns.makeDefaults(options);
       var saveAnchor = angular.element('<a></a>');
-      saveAnchor.attr('download', filename);
+      saveAnchor.attr('download', options.filename);
       saveAnchor.attr('href', dataStr);
       saveAnchor.css('visibility', 'hidden');
       saveAnchor.css('position', 'absolute');
@@ -54,9 +54,9 @@ csv.factory('save', function($document) {'use strict';
       options = fns.makeDefaults(options);
       var dataArr = fns.makeDataArray(data, options);
       var dataStr = fns.makeCsvString(dataArr, options);
-      var saveAnchor = makeAnchor(dataString, options);
-      appendElement(saveAnchor);
-      saveAnchor.click();
+      var saveAnchor = fns.makeAnchor(dataStr, options);
+      fns.appendElement(saveAnchor);
+      saveAnchor[0].click();
       saveAnchor.remove();
     }
   };

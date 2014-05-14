@@ -6,11 +6,11 @@
  * Inspired by asafdav's ng-csv
  *
  */
-csv.directive('csv', ['save', function (save) {
+angularCsv.directive('angularCsv', ['angularCsvHelper', function (angularCsvHelper) {
   return {
     restrict: 'AC',
     scope: {
-      csvData: '&',
+      csvData: '&csv',
       csvFilename: '@',
       csvHeader: '&',
       csvDelimiter: '@',
@@ -18,7 +18,7 @@ csv.directive('csv', ['save', function (save) {
     },
     link: function (scope, element) {
       element.bind('click', function () {
-        save(scope.data(), {
+        angularCsvHelper.save(scope.csvData(), {
           filename: scope.csvFilename,
           header: scope.csvHeader(),
           delimiter: scope.csvDelimiter,

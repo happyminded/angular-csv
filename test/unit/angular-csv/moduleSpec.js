@@ -3,7 +3,7 @@
 // Set the jasmine fixture path
 // jasmine.getFixtures().fixturesPath = 'base/';
 
-describe('csv', function () {
+describe('angularCsv', function () {
 
   var module;
   var dependencies;
@@ -14,12 +14,12 @@ describe('csv', function () {
   };
 
   beforeEach(function () {
-    module = angular.module('csv');
+    module = angular.module('angularCsv');
     dependencies = module.requires;
   });
 
   it('should load config module', function () {
-    expect(hasModule('csv.config')).toBeTruthy();
+    expect(hasModule('angularCsv.config')).toBeTruthy();
   });
 
 });

@@ -3,8 +3,8 @@
 // before all nested files are concatenated by Grunt
 
 // Config
-angular.module('csv.config', [])
-  .value('csv.config', { debug: true })
+angular.module('angularCsv.config', [])
+  .value('angularCsv.config', { debug: true })
   .config(['$compileProvider', function($compileProvider) {
     if (angular.isDefined($compileProvider.urlSanitizationWhitelist)) {
       $compileProvider.urlSanitizationWhitelist(/^\s*(https?|ftp|mailto|file|data):/);
@@ -14,7 +14,7 @@ angular.module('csv.config', [])
   }]);
 
 // Modules
-var csv = angular.module('csv', ['csv.config', 'ngSanitize']);
+var angularCsv = angular.module('angularCsv', ['angularCsv.config', 'ngSanitize']);
 /**
  * angular-csv module
  * Save Javascript arrays from browser as csv files
@@ -23,11 +23,11 @@ var csv = angular.module('csv', ['csv.config', 'ngSanitize']);
  * Inspired by asafdav's ng-csv
  *
  */
-csv.directive('csv', ['save', function (save) {
+angularCsv.directive('angularCsv', ['angularCsvHelper', function (angularCsvHelper) {
   return {
     restrict: 'AC',
     scope: {
-      csvData: '&',
+      csvData: '&csv',
       csvFilename: '@',
       csvHeader: '&',
       csvDelimiter: '@',
@@ -35,7 +35,7 @@ csv.directive('csv', ['save', function (save) {
     },
     link: function (scope, element) {
       element.bind('click', function () {
-        save(scope.data(), {
+        angularCsvHelper.save(scope.csvData(), {
           filename: scope.csvFilename,
           header: scope.csvHeader(),
           delimiter: scope.csvDelimiter,
@@ -45,7 +45,7 @@ csv.directive('csv', ['save', function (save) {
     }
   };
 }]);
-csv.factory('save', function($document) {'use strict';
+angularCsv.factory('angularCsvHelper', function($document) {'use strict';
   var fns = {
     makeDefaults: function(options) {
       options.separator = options.separator || ',';
@@ -85,7 +85,7 @@ csv.factory('save', function($document) {'use strict';
     makeAnchor: function(dataStr, options) {
       options = fns.makeDefaults(options);
       var saveAnchor = angular.element('<a></a>');
-      saveAnchor.attr('download', filename);
+      saveAnchor.attr('download', options.filename);
       saveAnchor.attr('href', dataStr);
       saveAnchor.css('visibility', 'hidden');
       saveAnchor.css('position', 'absolute');
@@ -101,9 +101,9 @@ csv.factory('save', function($document) {'use strict';
       options = fns.makeDefaults(options);
       var dataArr = fns.makeDataArray(data, options);
       var dataStr = fns.makeCsvString(dataArr, options);
-      var saveAnchor = makeAnchor(dataString, options);
-      appendElement(saveAnchor);
-      saveAnchor.click();
+      var saveAnchor = fns.makeAnchor(dataStr, options);
+      fns.appendElement(saveAnchor);
+      saveAnchor[0].click();
       saveAnchor.remove();
     }
   };

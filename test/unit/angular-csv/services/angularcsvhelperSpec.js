@@ -1,15 +1,15 @@
 /* jshint indent: 2*/
 // Set the jasmine fixture path
 // jasmine.getFixtures().fixturesPath = 'base/';
-describe('save', function() {
-  var save;
+describe('angularCsvHelper', function() {
+  var angularCsvHelper;
   var $rootScope;
   var options;
 
-  beforeEach(module('csv'));
+  beforeEach(module('angularCsv'));
 
-  beforeEach(inject(function(_save_, _$rootScope_, _$document_) {
-    save = _save_;
+  beforeEach(inject(function(_angularCsvHelper_, _$rootScope_, _$document_) {
+    angularCsvHelper = _angularCsvHelper_;
     $document = _$document_;
     $rootScope = _$rootScope_;
     $rootScope.dataArr = [['a', 'b', 1], ['c', 'd', 2]];
@@ -22,17 +22,17 @@ describe('save', function() {
     });
 
     it('should not alter row arrays', function() {
-      expect(save.makeDataArray($rootScope.dataArr, options))
+      expect(angularCsvHelper.makeDataArray($rootScope.dataArr, options))
         .toEqual($rootScope.dataArr);
     });
 
     it('should make row arrays from row objects', function() {
-      expect(save.makeDataArray($rootScope.dataObj, options))
+      expect(angularCsvHelper.makeDataArray($rootScope.dataObj, options))
         .toEqual($rootScope.dataArr);
     });
 
     it('should make csv string', function() {
-      expect(save.makeCsvString($rootScope.dataArr, options))
+      expect(angularCsvHelper.makeCsvString($rootScope.dataArr, options))
         .toBe('data:text/csv;charset=utf-8,a,b,1%0D%0Ac,d,2%0D%0A');
     });
   });
@@ -45,17 +45,17 @@ describe('save', function() {
     });
 
     it('should add delimiter to string values in row arrays', function() {
-      expect(save.makeDataArray($rootScope.dataArr, options))
+      expect(angularCsvHelper.makeDataArray($rootScope.dataArr, options))
         .toEqual(delimitedArray);
     });
 
     it('should add delimiter to string values in row objects', function() {
-      expect(save.makeDataArray($rootScope.dataObj, options))
+      expect(angularCsvHelper.makeDataArray($rootScope.dataObj, options))
         .toEqual(delimitedArray);
     });
 
     it('should make csv string', function() {
-      expect(save.makeCsvString(delimitedArray, options))
+      expect(angularCsvHelper.makeCsvString(delimitedArray, options))
         .toBe('data:text/csv;charset=utf-8,' +
           '%22a%22,%22b%22,1%0D%0A' +
           '%22c%22,%22d%22,2%0D%0A');
@@ -68,7 +68,7 @@ describe('save', function() {
     });
 
     it('should make csv string', function() {
-      expect(save.makeCsvString($rootScope.dataArr, options))
+      expect(angularCsvHelper.makeCsvString($rootScope.dataArr, options))
         .toBe('data:text/csv;charset=utf-8,' +
           'a;b;1%0D%0A' +
           'c;d;2%0D%0A');
@@ -81,17 +81,17 @@ describe('save', function() {
     });
 
     it('should add header and not alter row arrays', function() {
-      expect(save.makeDataArray($rootScope.dataArr, options))
+      expect(angularCsvHelper.makeDataArray($rootScope.dataArr, options))
         .toEqual([options.header].concat($rootScope.dataArr));
     });
 
     it('should add header and make row arrays from row objects', function() {
-      expect(save.makeDataArray($rootScope.dataObj, options))
+      expect(angularCsvHelper.makeDataArray($rootScope.dataObj, options))
         .toEqual([options.header].concat($rootScope.dataArr));
     });
 
     it('should make csv string', function() {
-      expect(save.makeCsvString([options.header].concat($rootScope.dataArr),
+      expect(angularCsvHelper.makeCsvString([options.header].concat($rootScope.dataArr),
           options))
         .toBe('data:text/csv;charset=utf-8,' +
           'col1,col2,col3%0D%0A' +
