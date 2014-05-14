@@ -27,7 +27,7 @@ angularCsv.directive('angularCsv', ['angularCsvHelper', function (angularCsvHelp
   return {
     restrict: 'AC',
     scope: {
-      csvData: '&csv',
+      csvData: '&angularCsv',
       csvFilename: '@',
       csvHeader: '&',
       csvDelimiter: '@',
