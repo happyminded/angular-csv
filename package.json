@@ -1,0 +1,36 @@
+{
+    "name": "angular-csv",
+    "version": "0.0.0",
+    "dependencies": {},
+    "devDependencies": {
+        "grunt": "*",
+        "grunt-contrib-copy": "*",
+        "grunt-contrib-concat": "*",
+        "grunt-contrib-coffee": "*",
+        "grunt-contrib-uglify": "*",
+        "grunt-contrib-compass": "*",
+        "grunt-contrib-cssmin": "*",
+        "grunt-contrib-connect": "*",
+        "grunt-contrib-clean": "*",
+        "grunt-contrib-jshint": "*",
+        "grunt-contrib-htmlmin": "*",
+        "grunt-contrib-imagemin": "*",
+        "grunt-contrib-watch": "*",
+        "grunt-usemin": "*",
+        "grunt-svgmin": "*",
+        "grunt-rev": "*",
+        "grunt-karma": "*",
+        "grunt-open": "*",
+        "grunt-concurrent": "*",
+        "matchdep": "*",
+        "karma": "~0.12",
+        "connect-livereload": "*",
+        "grunt-google-cdn": "*",
+        "grunt-ngmin": "*",
+        "karma-jasmine": "*",
+        "karma-chrome-launcher": "*"
+    },
+    "engines": {
+        "node": ">=0.8.0"
+    }
+}
