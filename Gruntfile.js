@@ -13,9 +13,8 @@ module.exports = function (grunt) {'use strict';
       library: {
         src: [
           'src/<%= library.name %>/<%= library.name %>.prefix',
-          'src/<%= library.name %>/<%= library.name %>.js',
+          'src/<%= library.name %>/module.js',
           'src/<%= library.name %>/directives/**/*.js',
-          'src/<%= library.name %>/filters/**/*.js',
           'src/<%= library.name %>/services/**/*.js',
           'src/<%= library.name %>/<%= library.name %>.suffix'
         ],
